@@ -1,5 +1,5 @@
 
-imageName: ghcr.io/1ndistinct/backup:latest
+imageName: ghcr.io/1ndistinct/storage:latest
 
 regCredName: regcred
 

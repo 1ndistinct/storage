@@ -1,0 +1,12 @@
+
+imageName: ghcr.io/1ndistinct/backup:latest
+
+regCredName: regcred
+
+name: backup
+
+s3_bucket_name: cluster-backup-732617013467
+
+secrets:
+  aws_secret_access_key: <SECRET> 
+  aws_access_key_id: INFO

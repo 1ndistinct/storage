@@ -5,3 +5,5 @@ terraform.tfstate.backup
 provider.tf
 backend.tf
 .terrafrom/
+**/secret_vals.yaml
+**/template.yaml

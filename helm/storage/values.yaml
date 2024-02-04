@@ -5,7 +5,7 @@ regCredName: regcred
 
 name: storage
 
-s3_bucket_name: cluster-backup-732617013467
+s3_bucket_name: backups-staging-euw2-cluster-backup-732617013467
 
 secrets:
   aws_secret_access_key: <SECRET> 

@@ -25,4 +25,3 @@ if __name__ == "__main__":
         backup_to_s3(client,settings)
     elif args.entrypoint == "restore":
         restore_from_s3(client,settings)
-    sleep(1000000)

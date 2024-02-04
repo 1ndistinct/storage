@@ -5,8 +5,8 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    s3_bucket_name = ""
-    volumes_mount_dir = ""
+    s3_bucket_name:str = ""
+    volumes_mount_dir:str = ""
     log_level:str = "INFO"
 
 

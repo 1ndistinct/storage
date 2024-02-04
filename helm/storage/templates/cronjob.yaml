@@ -42,6 +42,8 @@ spec:
                 memory: 500Mi
               requests:
                 memory: 500Mi
+            command:
+              - backup
           restartPolicy: Never
           volumes:
             - name: {{ .Values.name }}

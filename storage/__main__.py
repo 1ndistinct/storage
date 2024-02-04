@@ -21,8 +21,8 @@ if __name__ == "__main__":
     settings = get_settings()
     setup_logging(settings)
     client = boto3.client("s3",region_name="eu-west-2")
-    sleep(10000000000000000)
     if args.entrypoint == "backup":
         backup_to_s3(client,settings)
     elif args.entrypoint == "restore":
         restore_from_s3(client,settings)
+    sleep(10000000000000000)

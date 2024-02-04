@@ -9,4 +9,4 @@ WORKDIR /app
 COPY ./storage ./storage
 RUN chown -R app /app && chmod -R 700 /app
 # USER app ##disable for dev
-ENTRYPOINT ["python","-m","storage"]
+ENTRYPOINT ["python","-m","storage", "backup"]

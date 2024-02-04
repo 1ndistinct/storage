@@ -22,18 +22,18 @@ spec:
               ### to backup
               - mountPath: /volumes/pypi-server
                 name: pypi
-              # - mountPath: /volumes/data-postgres-0
-              #   name: postgres
-              # - mountPath: /volumes/redis-data-redis-master-0
-              #   name: redis
-              # - mountPath: /volumes/pgadmin-pgadmin4
-              #   name: pgadmin
-              # - mountPath: /volumes/wireguard-ui-db
-              #   name: wireguard-ui
-              # - mountPath: /volumes/wireguard-pvc
-              #   name: wireguard
-              - mountPath: /volumes/tekkit2
-                name: tekkit2
+              - mountPath: /volumes/data-postgres-0
+                name: postgres
+              - mountPath: /volumes/redis-data-redis-master-0
+                name: redis
+              - mountPath: /volumes/pgadmin-pgadmin4
+                name: pgadmin
+              - mountPath: /volumes/wireguard-ui-db
+                name: wireguard-ui
+              - mountPath: /volumes/wireguard-pvc
+                name: wireguard
+              # - mountPath: /volumes/tekkit2
+              #   name: tekkit2
             securityContext: null
             image: {{ .Values.imageName }}
             imagePullPolicy: Always

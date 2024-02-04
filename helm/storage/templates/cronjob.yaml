@@ -17,7 +17,7 @@ spec:
             - configMapRef:
                 name: {{ .Values.name }}
             volumeMounts:
-              - mountPath: /.aws
+              - mountPath: /root/.aws ## root because container runs as root
                 name: {{ .Values.name }}
               ### to backup
               - mountPath: /volumes/pypi-server

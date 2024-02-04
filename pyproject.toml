@@ -17,7 +17,7 @@ ruff = "^0.0.278"
 black = "^23.7.0"
 pytest = "^7.4.0"
 ipykernel = "^6.25.2"
-
+boto3-stubs = { extras = ["s3"],version = "^1.28.39" }
 
 
 [build-system]

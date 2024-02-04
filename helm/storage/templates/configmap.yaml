@@ -5,3 +5,4 @@ metadata:
 data:
   s3_bucket_name: {{ .Values.s3_bucket_name }}
   log_level: "INFO"
+  volumes_mount_dir: "/volumes"

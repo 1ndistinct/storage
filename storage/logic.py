@@ -1,4 +1,5 @@
 from datetime import datetime
+import hashlib
 import logging
 import os
 from typing import TYPE_CHECKING
@@ -11,7 +12,12 @@ def should_update(client:"S3Client",settings:Settings,bucket_dir:str,local_dir:s
         s3_object = client.head_object(Bucket=settings.s3_bucket_name, Key=bucket_dir)
         local_file_mod_time = datetime.fromtimestamp(os.path.getmtime(local_dir))
         if s3_object['LastModified'].replace(tzinfo=None) < local_file_mod_time:
-            return True  # File has changed
+            hash_object = hashlib.md5()
+            with open(local_dir, 'rb') as f:
+                for chunk in iter(lambda: f.read(4096), b''):
+                    hash_object.update(chunk)
+            if s3_object["ETag"].strip('"') != hash_object.hexdigest():
+                return True  # File has changed
     except Exception:
         logging.exception("uploading file will continue...")
         return True

@@ -32,8 +32,8 @@ spec:
                 name: wireguard-ui
               - mountPath: /volumes/wireguard-pvc
                 name: wireguard
-              # - mountPath: /volumes/tekkit2
-              #   name: tekkit2
+              - mountPath: /volumes/tekkit2
+                name: tekkit2
             securityContext: null
             image: {{ .Values.imageName }}
             imagePullPolicy: Always

@@ -39,4 +39,26 @@ def backup_to_s3(client:"S3Client", settings:Settings):
         logging.info(f"Skipped {files_skipped}/{len(files)} in {directory_name} since they have not been modified...")
 
 def restore_from_s3(client:"S3Client",settings:Settings):
-    ...
+    logging.info(f"Attempting to download objects from S3 bucket {settings.s3_bucket_name}...")
+    if not os.path.exists(settings.volumes_mount_dir):
+        logging.info("volumes not mounted, not restoring anything...")
+        return
+    items = os.listdir(settings.volumes_mount_dir)
+    directories = [item for item in items if os.path.isdir(os.path.join(settings.volumes_mount_dir, item))]
+    paginator = client.get_paginator('list_objects_v2')
+    response_iterator = paginator.paginate(Bucket=settings.s3_bucket_name)
+    
+    for page in response_iterator:
+        for s3_object in page.get('Contents', []):
+            s3_key = s3_object['Key']
+            volume = s3_key.split("/")[0]
+            if volume not in directories:
+                logging.warn(f"not downloading file for volume {volume} because it is not mounted...")
+                continue
+            local_file_path = os.path.join(settings.volumes_mount_dir, s3_key)
+            local_directory = os.path.dirname(local_file_path)
+            if not os.path.exists(local_directory):
+                os.makedirs(local_directory)
+
+            client.download_file(settings.s3_bucket_name, s3_key, local_file_path)
+            logging.info(f"Downloaded object {s3_key} to {local_file_path}")

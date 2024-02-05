@@ -36,7 +36,8 @@ def backup_to_s3(client:"S3Client", settings:Settings):
                 client.upload_file(os.path.join(path, file),settings.s3_bucket_name,bucket_dir)
                 continue
             files_skipped+=1
-        logging.info(f"Skipped {files_skipped}/{len(files)} in {directory_name} since they have not been modified...")
+        if files_skipped > 0:
+            logging.info(f"Skipped {files_skipped}/{len(files)} in {directory_name} since they have not been modified...")
 
 def restore_from_s3(client:"S3Client",settings:Settings):
     logging.info(f"Attempting to download objects from S3 bucket {settings.s3_bucket_name}...")

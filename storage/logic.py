@@ -62,3 +62,4 @@ def restore_from_s3(client:"S3Client",settings:Settings):
 
             client.download_file(settings.s3_bucket_name, s3_key, local_file_path)
             logging.info(f"Downloaded object {s3_key} to {local_file_path}")
+            os.chmod(local_file_path, 0o777)

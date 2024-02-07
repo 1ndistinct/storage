@@ -17,7 +17,7 @@ spec:
             - python
             - -m
             - storage 
-            - restore 
+            - backup 
             envFrom:
             - configMapRef:
                 name: {{ .Values.name }}
@@ -25,18 +25,18 @@ spec:
               - mountPath: /root/.aws ## root because container runs as root
                 name: {{ .Values.name }}
               ### to backup
-              # - mountPath: /volumes/pypi-server
-              #   name: pypi
+              - mountPath: /volumes/pypi-server
+                name: pypi
               - mountPath: /volumes/data-postgres-0
                 name: postgres
-              # - mountPath: /volumes/redis-data-redis-master-0
-              #   name: redis
-              # - mountPath: /volumes/wireguard-ui-db
-              #   name: wireguard-ui
-              # - mountPath: /volumes/wireguard-pvc
-              #   name: wireguard
-              # - mountPath: /volumes/tekkit2
-              #   name: tekkit2
+              - mountPath: /volumes/redis-data-redis-master-0
+                name: redis
+              - mountPath: /volumes/wireguard-ui-db
+                name: wireguard-ui
+              - mountPath: /volumes/wireguard-pvc
+                name: wireguard
+              - mountPath: /volumes/tekkit2
+                name: tekkit2
             securityContext: null
             image: {{ .Values.imageName }}
             imagePullPolicy: Always

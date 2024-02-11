@@ -31,8 +31,6 @@ spec:
                 name: postgres
               - mountPath: /volumes/redis-data-redis-master-0
                 name: redis
-              - mountPath: /volumes/wireguard-ui-db
-                name: wireguard-ui
               - mountPath: /volumes/wireguard-pvc
                 name: wireguard
               - mountPath: /volumes/tekkit2

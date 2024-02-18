@@ -59,12 +59,6 @@ spec:
             - name: redis
               persistentVolumeClaim:
                 claimName: redis-data-redis-master-0
-            - name: pgadmin
-              persistentVolumeClaim:
-                claimName: pgadmin-pgadmin4
-            - name: wireguard-ui
-              persistentVolumeClaim:
-                claimName: wireguard-ui-db
             - name: wireguard
               persistentVolumeClaim:
                 claimName: wireguard-pvc

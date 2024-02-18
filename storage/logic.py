@@ -18,8 +18,11 @@ def should_update(client:"S3Client",settings:Settings,bucket_dir:str,local_dir:s
                     hash_object.update(chunk)
             if s3_object["ETag"].strip('"') != hash_object.hexdigest():
                 return True  # File has changed
-    except Exception:
-        logging.exception("uploading file will continue...")
+    except Exception as exc:
+        if not "(404)" in str(exc):
+            logging.exception("uploading file will continue...")
+        else:
+            logging.error("file missing...")
         return True
     return False
 
